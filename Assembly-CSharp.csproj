@@ -75,6 +75,7 @@
      <Compile Include="Assets\FibrumSDK\FibrumLoader\SceneAnims\phone_Transform_localRotation.cs" />
      <Compile Include="Assets\FibrumSDK\Scenes\demoMaterials\GUIuserScript.cs" />
      <Compile Include="Assets\FibrumSDK\Scenes\demoMaterials\JoystickSetupDemo.cs" />
+     <Compile Include="Assets\HardwareCheck.cs" />
      <Compile Include="Assets\Image Effects\Scripts\Antialiasing.cs" />
      <Compile Include="Assets\Image Effects\Scripts\Bloom.cs" />
      <Compile Include="Assets\Image Effects\Scripts\BloomAndFlares.cs" />
