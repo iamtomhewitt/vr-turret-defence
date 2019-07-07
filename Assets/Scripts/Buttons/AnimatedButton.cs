@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class AnimatedButton : MonoBehaviour 
 {
@@ -11,8 +12,9 @@ public class AnimatedButton : MonoBehaviour
     public float fillSpeed;
 
     [Space()]
-    public string sceneToLoad;
     public AudioSource selectSound;
+
+	public UnityEvent buttonEvent;
 
     public void IncreaseFill()
     {
@@ -20,7 +22,7 @@ public class AnimatedButton : MonoBehaviour
 
         if (fill.fillAmount >= 1f)
         {
-            StartCoroutine(WaitAndLoad());
+			buttonEvent.Invoke();
             GetComponent<BoxCollider>().enabled = false;
         }
     }
@@ -30,10 +32,20 @@ public class AnimatedButton : MonoBehaviour
         fill.fillAmount = 0f;
     }
 
-    IEnumerator WaitAndLoad()
+    private IEnumerator WaitAndLoadCoroutine(string scene)
     {
         if(!selectSound.isPlaying) selectSound.Play();
         yield return new WaitForSeconds(selectSound.clip.length);
-        SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene(scene);
     }
+
+	public void WaitAndLoad(string scene)
+	{
+		StartCoroutine(WaitAndLoadCoroutine(scene));
+	}
+
+	public void OpenURL(string url)
+	{
+		Application.OpenURL(url);
+	}
 }
